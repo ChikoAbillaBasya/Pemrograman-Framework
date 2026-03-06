@@ -1,82 +1,179 @@
 <div align="center">
 
-# 🚀 Pemrograman Berbasis Framework
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Pemrograman%20Berbasis%20Framework&fontSize=32&fontColor=ffffff&fontAlignY=40&desc=Semester%206%20%E2%80%94%20Next.js%20Practicum%20Repository&descAlignY=62&descSize=16" width="100%"/>
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)
+<br/>
 
-<p>Kumpulan praktikum mata kuliah <strong>Pemrograman Berbasis Framework</strong> Semester 6.<br/>Setiap folder praktikum merupakan proyek Next.js yang berdiri sendiri.</p>
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+
+<br/>
+
+> 📖 Kumpulan praktikum mata kuliah **Pemrograman Berbasis Framework** Semester 6.  
+> Setiap folder praktikum merupakan proyek **Next.js** yang berdiri sendiri.
+
+<br/>
+
+![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
+![Praktikum](https://img.shields.io/badge/Praktikum-3%20Selesai-brightgreen?style=flat-square)
+![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
+
+<br/>
 
 ---
 
 ## 📚 Daftar Praktikum
 
-| # | Proyek | Topik | Status |
-|:---:|--------|-------|:---:|
-| 01 | [📁 my-app](./Praktikum-01/my-app/) | Pengenalan Next.js | ✅ Done |
-| 02 | [📁 next-routing](./Praktikum-02/next-routing/) | Routing di Next.js | ✅ Done |
+<div align="center">
+
+| # | Proyek | Topik | Konsep Utama | Status |
+|:---:|--------|-------|:------------:|:---:|
+| `01` | [📁 my-app](./Praktikum-01/my-app/) | Pengenalan Next.js | Pages, Routing dasar, API Route | ✅ |
+| `02` | [📁 next-routing](./Praktikum-02/next-routing/) | Routing Next.js | Dynamic Route, Nested Route, Layout | ✅ |
+| `03` | [📁 next-routing](./Praktikum-03/next-routing/) | Advanced Routing | Catch-all, Optional Catch-all, Auth | ✅ |
+
+</div>
+
+<br/>
 
 ---
 
 ## 🗂️ Detail Praktikum
 
 <details>
-<summary><b>📦 Praktikum 01 — Pengenalan Next.js</b></summary>
+<summary>
+  <b>&nbsp;📦 Praktikum 01 &nbsp;—&nbsp; Pengenalan Next.js</b>
+</summary>
 <br/>
-
-Proyek dasar Next.js yang di-bootstrap menggunakan `create-next-app`. Berisi halaman utama dan halaman `about` sederhana beserta contoh API route.
+<blockquote>Proyek dasar Next.js yang di-bootstrap menggunakan <code>create-next-app</code>. Berisi halaman utama dan halaman <code>about</code> sederhana beserta contoh API route.</blockquote>
 
 **🗺️ Struktur Halaman**
+
 ```
-/           → Halaman utama  (index.tsx)
-/about      → Halaman about  (about.js)
-/api/hello  → Contoh API route
+📂 my-app/src/pages
+ ├── 📄 index.tsx       →  /             Halaman utama
+ ├── 📄 about.js        →  /about        Halaman about
+ └── 📂 api
+     └── 📄 hello.ts    →  /api/hello    Contoh API route
 ```
 
 **▶️ Menjalankan Proyek**
+
 ```bash
 cd Praktikum-01/my-app
 npm install
 npm run dev
 ```
-> Buka [http://localhost:3000](http://localhost:3000) di browser.
 
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
 </details>
 
-<details>
-<summary><b>📦 Praktikum 02 — Routing di Next.js</b></summary>
-<br/>
+---
 
-Proyek yang membahas sistem routing Next.js menggunakan **Pages Router**, mencakup dynamic routes, nested routes, dan penggunaan komponen layout.
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 02 &nbsp;—&nbsp; Routing di Next.js</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas sistem routing Next.js menggunakan <strong>Pages Router</strong>, mencakup dynamic routes, nested routes, dan penggunaan komponen layout.</blockquote>
 
 **🗺️ Struktur Halaman**
+
 ```
-/                   → Halaman utama
-/about              → Halaman about
-/blog/[slug]        → Dynamic route blog
-/produk             → Daftar produk
-/produk/[id]        → Detail produk (dynamic route)
-/profile            → Halaman profil
-/profile/edit       → Edit profil
-/user               → Halaman user
-/user/password      → Ubah password (nested route)
-/setting/app        → Pengaturan aplikasi
-/api/hello          → Contoh API route
+📂 next-routing/src/pages
+ ├── 📄 index.tsx            →  /                  Halaman utama
+ ├── 📄 about.tsx            →  /about             Halaman about
+ ├── 📂 blog
+ │   └── 📄 [slug].tsx       →  /blog/:slug        Dynamic route blog
+ ├── 📂 produk
+ │   ├── 📄 index.tsx        →  /produk            Daftar produk
+ │   └── 📄 [id].tsx         →  /produk/:id        Detail produk
+ ├── 📂 profile
+ │   ├── 📄 index.tsx        →  /profile           Halaman profil
+ │   └── 📄 edit.tsx         →  /profile/edit      Edit profil
+ ├── 📂 user
+ │   ├── 📄 index.tsx        →  /user              Halaman user
+ │   └── 📂 password
+ │       └── 📄 index.tsx    →  /user/password     Ubah password
+ ├── 📂 setting
+ │   └── 📄 app.tsx          →  /setting/app       Pengaturan
+ └── 📂 api
+     └── 📄 hello.ts         →  /api/hello         API route
 ```
 
 **▶️ Menjalankan Proyek**
+
 ```bash
 cd Praktikum-02/next-routing
 npm install
 npm run dev
 ```
-> Buka [http://localhost:3000](http://localhost:3000) di browser.
 
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
 </details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 03 &nbsp;—&nbsp; Advanced Routing di Next.js</b>
+</summary>
+<br/>
+<blockquote>Proyek lanjutan routing Next.js (Pages Router) yang mencakup <strong>dynamic routes</strong>, <strong>catch-all routes</strong>, <strong>optional catch-all routes</strong>, nested routes, dan halaman autentikasi.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src/pages
+ ├── 📄 index.tsx              →  /                    Halaman utama
+ ├── 📄 about.tsx              →  /about               Halaman about
+ ├── 📂 blog
+ │   └── 📄 [slug].tsx         →  /blog/:slug          Dynamic route
+ ├── 📂 produk
+ │   ├── 📄 index.tsx          →  /produk              Daftar produk
+ │   └── 📄 [id].tsx           →  /produk/:id          Detail produk
+ ├── 📂 category
+ │   └── 📄 [...slug].js       →  /category/*          Catch-all route
+ ├── 📂 shop
+ │   └── 📄 [[...slug]].js     →  /shop  /shop/*       Optional catch-all
+ ├── 📂 auth
+ │   ├── 📄 login.tsx          →  /auth/login          Halaman login
+ │   └── 📄 register.tsx       →  /auth/register       Halaman register
+ ├── 📂 profile
+ │   ├── 📄 index.tsx          →  /profile             Halaman profil
+ │   └── 📄 edit.tsx           →  /profile/edit        Edit profil
+ ├── 📂 user
+ │   ├── 📄 index.tsx          →  /user                Halaman user
+ │   └── 📂 password
+ │       └── 📄 index.tsx      →  /user/password       Ubah password
+ ├── 📂 setting
+ │   └── 📄 app.tsx            →  /setting/app         Pengaturan
+ └── 📂 api
+     └── 📄 hello.ts           →  /api/hello           API route
+```
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-03/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
+</details>
+
+<br/>
 
 ---
 
@@ -84,14 +181,45 @@ npm run dev
 
 <div align="center">
 
-| Teknologi | Versi | Keterangan |
-|-----------|:-----:|------------|
-| [Next.js](https://nextjs.org/) | 16 | React Framework |
-| [React](https://react.dev/) | 19 | UI Library |
-| [TypeScript](https://www.typescriptlang.org/) | 5 | Type Safety |
-| [ESLint](https://eslint.org/) | 9 | Code Linting |
+|  | Teknologi | Versi | Peran |
+|:---:|-----------|:-----:|-------|
+| ⬛ | [Next.js](https://nextjs.org/) | `16` | React Framework — SSR, Routing, API |
+| 🔵 | [React](https://react.dev/) | `19` | UI Component Library |
+| 🔷 | [TypeScript](https://www.typescriptlang.org/) | `5` | Static Type Checking |
+| 🟡 | [ESLint](https://eslint.org/) | `9` | Code Quality & Linting |
 
 </div>
+
+<br/>
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# Clone repository
+git clone <url-repo>
+
+# Masuk ke salah satu proyek
+cd Praktikum-03/next-routing
+
+# Install dependencies
+npm install
+
+# Jalankan development server
+npm run dev
+```
+
+**Perintah yang tersedia:**
+
+| Perintah | Fungsi |
+|----------|--------|
+| `npm run dev` | Jalankan development server di `localhost:3000` |
+| `npm run build` | Build proyek untuk production |
+| `npm start` | Jalankan production server |
+| `npm run lint` | Cek kualitas kode dengan ESLint |
+
+<br/>
 
 ---
 
@@ -99,13 +227,17 @@ npm run dev
 
 Pastikan sudah terinstall sebelum menjalankan proyek:
 
-- **[Node.js](https://nodejs.org/)** v18 atau lebih baru
-- **npm** / **yarn** / **pnpm**
+- **[Node.js](https://nodejs.org/)** `v18` atau lebih baru
+- **npm** &nbsp;/&nbsp; **yarn** &nbsp;/&nbsp; **pnpm**
+
+<br/>
 
 ---
 
 <div align="center">
 
-📝 Proyek ini dibuat untuk keperluan akademik.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=100&section=footer" width="100%"/>
+
+*📝 Dibuat untuk keperluan akademik — Mata Kuliah Pemrograman Berbasis Framework*
 
 </div>
