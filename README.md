@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-4%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-5%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -36,6 +36,7 @@
 | `02` | [📁 next-routing](./Praktikum-02/next-routing/) | Routing Next.js | Dynamic Route, Nested Route, Layout | ✅ |
 | `03` | [📁 next-routing](./Praktikum-03/next-routing/) | Advanced Routing | Catch-all, Optional Catch-all, Auth | ✅ |
 | `04` | [📁 next-routing](./Praktikum-04/next-routing/) | Styling & Views Pattern | Tailwind CSS, Sass, CSS Modules, Views | ✅ |
+| `05` | [📁 next-routing](./Praktikum-05/next-routing/) | Custom Error Page | Custom 404, Sass, CSS Modules, Views | ✅ |
 
 </div>
 
@@ -241,6 +242,73 @@ npm run dev
 ```
 
 > 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 05 &nbsp;—&nbsp; Custom Error Page</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas pembuatan halaman error kustom di Next.js, khususnya <strong>Custom 404 Page</strong>, menggunakan CSS Modules dan Sass untuk styling.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src/pages
+ ├── 📄 index.tsx              →  /                    Halaman utama
+ ├── 📄 404.tsx                →  /404  (any not found) Custom 404 page
+ ├── 📄 about.tsx              →  /about               Halaman about
+ ├── 📂 blog
+ │   └── 📄 [slug].tsx         →  /blog/:slug          Dynamic route
+ ├── 📂 produk
+ │   ├── 📄 index.tsx          →  /produk              Daftar produk
+ │   └── 📄 [id].tsx           →  /produk/:id          Detail produk
+ ├── 📂 category
+ │   └── 📄 [...slug].js       →  /category/*          Catch-all route
+ ├── 📂 shop
+ │   └── 📄 [[...slug]].js     →  /shop  /shop/*       Optional catch-all
+ ├── 📂 auth
+ │   ├── 📄 login.tsx          →  /auth/login          Halaman login
+ │   └── 📄 register.tsx       →  /auth/register       Halaman register
+ ├── 📂 views                  →  (View components layer)
+ │   ├── 📂 auth               →  Login & Register view
+ │   └── 📂 produk             →  Produk view components
+ ├── 📂 profile
+ │   ├── 📄 index.tsx          →  /profile             Halaman profil
+ │   └── 📄 edit.tsx           →  /profile/edit        Edit profil
+ ├── 📂 user
+ │   ├── 📄 index.tsx          →  /user                Halaman user
+ │   └── 📂 password
+ │       └── 📄 index.tsx      →  /user/password       Ubah password
+ ├── 📂 setting
+ │   └── 📄 app.tsx            →  /setting/app         Pengaturan
+ └── 📂 api
+     └── 📄 hello.ts           →  /api/hello           API route
+```
+
+**🎨 Styling yang Digunakan**
+
+| File | Metode | Keterangan |
+|------|:------:|-----------|
+| `globals.css` | Global CSS | Style global aplikasi |
+| `Home.module.css` | CSS Modules | Scoped style halaman utama |
+| `404.module.css` | CSS Modules | Scoped style halaman 404 |
+| `colors.scss` | Sass Variables | Variabel warna global |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-05/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.  
+> 🔴 Coba akses URL sembarang (misal `/halaman-tidak-ada`) untuk melihat Custom 404.
 
 <br/>
 </details>
