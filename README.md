@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-3%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-4%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -35,6 +35,7 @@
 | `01` | [📁 my-app](./Praktikum-01/my-app/) | Pengenalan Next.js | Pages, Routing dasar, API Route | ✅ |
 | `02` | [📁 next-routing](./Praktikum-02/next-routing/) | Routing Next.js | Dynamic Route, Nested Route, Layout | ✅ |
 | `03` | [📁 next-routing](./Praktikum-03/next-routing/) | Advanced Routing | Catch-all, Optional Catch-all, Auth | ✅ |
+| `04` | [📁 next-routing](./Praktikum-04/next-routing/) | Styling & Views Pattern | Tailwind CSS, Sass, CSS Modules, Views | ✅ |
 
 </div>
 
@@ -173,6 +174,77 @@ npm run dev
 <br/>
 </details>
 
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 04 &nbsp;—&nbsp; Styling &amp; Views Pattern</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas berbagai metode <strong>styling</strong> di Next.js — Tailwind CSS, Sass, dan CSS Modules — serta penerapan pola <strong>Views</strong> untuk memisahkan logika halaman dengan komponen tampilan.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src/pages
+ ├── 📄 index.tsx              →  /                    Halaman utama
+ ├── 📄 about.tsx              →  /about               Halaman about
+ ├── 📂 blog
+ │   └── 📄 [slug].tsx         →  /blog/:slug          Dynamic route
+ ├── 📂 produk
+ │   ├── 📄 index.tsx          →  /produk              Daftar produk
+ │   └── 📄 [id].tsx           →  /produk/:id          Detail produk
+ ├── 📂 category
+ │   └── 📄 [...slug].js       →  /category/*          Catch-all route
+ ├── 📂 shop
+ │   └── 📄 [[...slug]].js     →  /shop  /shop/*       Optional catch-all
+ ├── 📂 auth
+ │   ├── 📄 login.tsx          →  /auth/login          Halaman login
+ │   └── 📄 register.tsx       →  /auth/register       Halaman register
+ ├── 📂 views                  →  (View components layer)
+ │   ├── 📂 auth
+ │   │   ├── 📂 login           →  LoginView component
+ │   │   └── 📂 register        →  RegisterView component
+ │   └── 📂 produk
+ │       ├── 📂 heroSection     →  Hero section component
+ │       ├── 📂 mainSection     →  Main section component
+ │       └── 📄 index.tsx       →  Produk view component
+ ├── 📂 profile
+ │   ├── 📄 index.tsx          →  /profile             Halaman profil
+ │   └── 📄 edit.tsx           →  /profile/edit        Edit profil
+ ├── 📂 user
+ │   ├── 📄 index.tsx          →  /user                Halaman user
+ │   └── 📂 password
+ │       └── 📄 index.tsx      →  /user/password       Ubah password
+ ├── 📂 setting
+ │   └── 📄 app.tsx            →  /setting/app         Pengaturan
+ └── 📂 api
+     └── 📄 hello.ts           →  /api/hello           API route
+```
+
+**🎨 Styling yang Digunakan**
+
+| File | Metode | Keterangan |
+|------|:------:|-----------|
+| `globals.css` | Global CSS | Style global aplikasi |
+| `Home.module.css` | CSS Modules | Scoped style per komponen |
+| `colors.scss` | Sass Variables | Variabel warna global |
+| `login.module.scss` | Sass Modules | Scoped Sass style |
+| Tailwind CSS | Utility-first | Class-based styling |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-04/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
+</details>
+
 <br/>
 
 ---
@@ -187,6 +259,8 @@ npm run dev
 | 🔵 | [React](https://react.dev/) | `19` | UI Component Library |
 | 🔷 | [TypeScript](https://www.typescriptlang.org/) | `5` | Static Type Checking |
 | 🟡 | [ESLint](https://eslint.org/) | `9` | Code Quality & Linting |
+| 🩵 | [Tailwind CSS](https://tailwindcss.com/) | `3` | Utility-first CSS Framework |
+| 🟣 | [Sass](https://sass-lang.com/) | `1` | CSS Preprocessor |
 
 </div>
 
