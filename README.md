@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-5%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-6%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -37,6 +37,7 @@
 | `03` | [📁 next-routing](./Praktikum-03/next-routing/) | Advanced Routing | Catch-all, Optional Catch-all, Auth | ✅ |
 | `04` | [📁 next-routing](./Praktikum-04/next-routing/) | Styling & Views Pattern | Tailwind CSS, Sass, CSS Modules, Views | ✅ |
 | `05` | [📁 next-routing](./Praktikum-05/next-routing/) | Custom Error Page | Custom 404, Sass, CSS Modules, Views | ✅ |
+| `06` | [📁 next-routing](./Praktikum-06/next-routing/) | Firebase & Fetch API | Firebase Firestore, REST API, Fetch | ✅ |
 
 </div>
 
@@ -313,6 +314,76 @@ npm run dev
 <br/>
 </details>
 
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 06 &nbsp;—&nbsp; Firebase &amp; Fetch API</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas integrasi <strong>Firebase Firestore</strong> sebagai database dan penggunaan <strong>Fetch API</strong> untuk mengambil data melalui API route Next.js.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src/pages
+ ├── 📄 index.tsx              →  /                    Halaman utama
+ ├── 📄 404.tsx                →  (any not found)      Custom 404 page
+ ├── 📂 produk
+ │   ├── 📄 index.tsx          →  /produk              Daftar produk (fetch dari Firestore)
+ │   └── 📄 [id].tsx           →  /produk/:id          Detail produk
+ ├── 📂 auth
+ │   ├── 📄 login.tsx          →  /auth/login          Halaman login
+ │   └── 📄 register.tsx       →  /auth/register       Halaman register
+ ├── 📂 api
+ │   ├── 📄 hello.ts           →  /api/hello           API route contoh
+ │   └── 📄 produk.ts          →  /api/produk          API route Firestore produk
+ ├── 📂 utlis/db
+ │   ├── 📄 firebase.ts        →  Inisialisasi Firebase App
+ │   └── 📄 servicefirebase.ts →  Fungsi query Firestore
+ ├── 📂 views
+ │   ├── 📂 auth               →  Login & Register view
+ │   └── 📂 produk             →  Produk view components
+ └── ... (route lain sama dengan Praktikum-05)
+```
+
+**🔄 Alur Data**
+
+```
+Firebase Firestore
+       ↓  retrieveProducts()
+  servicefirebase.ts
+       ↓  handler()
+  /api/produk  (Next.js API Route)
+       ↓  fetch("/api/produk")
+  /produk  (Halaman)
+```
+
+**⚙️ Konfigurasi Firebase**
+
+Buat file `.env.local` di root proyek:
+```env
+FIREBASE_API_KEY=...
+FIREBASE_AUTH_DOMAIN=...
+FIREBASE_PROJECT_ID=...
+FIREBASE_STORAGE_BUCKET=...
+FIREBASE_MESSAGING_SENDER_ID=...
+FIREBASE_APP_ID=...
+```
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-06/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
+</details>
+
 <br/>
 
 ---
@@ -329,6 +400,7 @@ npm run dev
 | 🟡 | [ESLint](https://eslint.org/) | `9` | Code Quality & Linting |
 | 🩵 | [Tailwind CSS](https://tailwindcss.com/) | `3` | Utility-first CSS Framework |
 | 🟣 | [Sass](https://sass-lang.com/) | `1` | CSS Preprocessor |
+| 🧡 | [Firebase](https://firebase.google.com/) | `12` | Backend-as-a-Service (Firestore) |
 
 </div>
 
