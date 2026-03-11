@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-6%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-7%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -38,6 +38,7 @@
 | `04` | [📁 next-routing](./Praktikum-04/next-routing/) | Styling & Views Pattern | Tailwind CSS, Sass, CSS Modules, Views | ✅ |
 | `05` | [📁 next-routing](./Praktikum-05/next-routing/) | Custom Error Page | Custom 404, Sass, CSS Modules, Views | ✅ |
 | `06` | [📁 next-routing](./Praktikum-06/next-routing/) | Firebase & Fetch API | Firebase Firestore, REST API, Fetch | ✅ |
+| `07` | [📁 next-routing](./Praktikum-07/next-routing/) | SWR Data Fetching | SWR, Firebase Firestore, Fetcher | ✅ |
 
 </div>
 
@@ -384,6 +385,64 @@ npm run dev
 <br/>
 </details>
 
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 07 &nbsp;—&nbsp; SWR Data Fetching</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas penggunaan library <strong>SWR</strong> (stale-while-revalidate) dari Vercel untuk data fetching yang efisien, menggantikan <code>useEffect</code> + <code>fetch</code> dengan pendekatan berbasis hook.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src/pages
+ ├── 📄 index.tsx              →  /                    Halaman utama
+ ├── 📄 404.tsx                →  (any not found)      Custom 404 page
+ ├── 📂 produk
+ │   ├── 📄 index.tsx          →  /produk              Daftar produk (via SWR)
+ │   └── 📄 [id].tsx           →  /produk/:id          Detail produk
+ ├── 📂 auth
+ │   ├── 📄 login.tsx          →  /auth/login          Halaman login
+ │   └── 📄 register.tsx       →  /auth/register       Halaman register
+ ├── 📂 api
+ │   ├── 📄 hello.ts           →  /api/hello           API route contoh
+ │   └── 📄 produk.ts          →  /api/produk          API route Firestore produk
+ ├── 📂 utils/db
+ │   ├── 📄 firebase.ts        →  Inisialisasi Firebase App
+ │   └── 📄 servicefirebase.ts →  Fungsi query Firestore
+ ├── 📂 utils/swr
+ │   └── 📄 fetcher.ts         →  Fungsi fetcher untuk SWR
+ ├── 📂 views
+ │   ├── 📂 auth               →  Login & Register view
+ │   └── 📂 produk             →  Produk view components
+ └── ... (route lain sama dengan Praktikum-06)
+```
+
+**🔄 Perbandingan: `fetch` vs `SWR`**
+
+| | Praktikum 06 (`fetch`) | Praktikum 07 (`SWR`) |
+|---|---|---|
+| Kode | `useEffect` + `useState` | `useSWR(url, fetcher)` |
+| Loading state | Manual `useState` | Otomatis `isLoading` |
+| Error handling | Manual `catch` | Otomatis `error` |
+| Re-fetch | Manual | Otomatis saat fokus/reconnect |
+| Cache | Tidak ada | Built-in (stale-while-revalidate) |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-07/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
+</details>
+
 <br/>
 
 ---
@@ -401,6 +460,7 @@ npm run dev
 | 🩵 | [Tailwind CSS](https://tailwindcss.com/) | `3` | Utility-first CSS Framework |
 | 🟣 | [Sass](https://sass-lang.com/) | `1` | CSS Preprocessor |
 | 🧡 | [Firebase](https://firebase.google.com/) | `12` | Backend-as-a-Service (Firestore) |
+| ⚪ | [SWR](https://swr.vercel.app/) | `2` | Data Fetching & Caching Hook |
 
 </div>
 
