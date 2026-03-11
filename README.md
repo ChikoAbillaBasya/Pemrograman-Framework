@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-7%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-8%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -39,6 +39,7 @@
 | `05` | [📁 next-routing](./Praktikum-05/next-routing/) | Custom Error Page | Custom 404, Sass, CSS Modules, Views | ✅ |
 | `06` | [📁 next-routing](./Praktikum-06/next-routing/) | Firebase & Fetch API | Firebase Firestore, REST API, Fetch | ✅ |
 | `07` | [📁 next-routing](./Praktikum-07/next-routing/) | SWR Data Fetching | SWR, Firebase Firestore, Fetcher | ✅ |
+| `08` | [📁 next-routing](./Praktikum-08/next-routing/) | SSR & Skeleton UI | getServerSideProps, TypeScript Types, Skeleton | ✅ |
 
 </div>
 
@@ -439,6 +440,68 @@ npm run dev
 ```
 
 > 🌐 Buka **[http://localhost:3000](http://localhost:3000)** di browser.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 08 &nbsp;—&nbsp; SSR &amp; Skeleton UI</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas <strong>Server-Side Rendering (SSR)</strong> menggunakan <code>getServerSideProps</code>, TypeScript type definitions, dan implementasi <strong>Skeleton Loading UI</strong> sebagai placeholder saat data sedang dimuat.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src/pages
+ ├── 📄 index.tsx              →  /                    Halaman utama
+ ├── 📄 404.tsx                →  (any not found)      Custom 404 page
+ ├── 📂 produk
+ │   ├── 📄 index.tsx          →  /produk              Daftar produk (SWR + Skeleton)
+ │   ├── 📄 server.tsx         →  /produk/server       Daftar produk (SSR)
+ │   ├── 📄 [id].tsx           →  /produk/:id          Detail produk
+ │   └── 📄 produk.module.scss →  Sass Modules styling
+ ├── 📂 auth
+ │   ├── 📄 login.tsx          →  /auth/login          Halaman login
+ │   └── 📄 register.tsx       →  /auth/register       Halaman register
+ ├── 📂 api
+ │   ├── 📄 hello.ts           →  /api/hello           API route contoh
+ │   └── 📄 produk.ts          →  /api/produk          API route Firestore produk
+ ├── 📂 types
+ │   └── 📄 Product.type.ts    →  TypeScript type ProductType
+ ├── 📂 utils/db
+ │   ├── 📄 firebase.ts        →  Inisialisasi Firebase App
+ │   └── 📄 servicefirebase.ts →  Fungsi query Firestore
+ ├── 📂 utils/swr
+ │   └── 📄 fetcher.ts         →  Fungsi fetcher untuk SWR
+ ├── 📂 views/produk
+ │   └── 📄 index.tsx          →  Komponen produk + Skeleton UI
+ └── ... (route lain sama dengan Praktikum-07)
+```
+
+**🔄 Perbandingan: CSR (SWR) vs SSR (`getServerSideProps`)**
+
+| | `/produk` (SWR) | `/produk/server` (SSR) |
+|---|---|---|
+| Render | Client-side | Server-side |
+| Data fetching | `useSWR` di browser | `getServerSideProps` di server |
+| Loading state | Skeleton UI | Tidak ada (data sudah siap) |
+| SEO | Kurang optimal | Optimal |
+| Kecepatan awal | Lebih lambat | Lebih cepat |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-08/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000/produk](http://localhost:3000/produk)** — CSR dengan Skeleton UI  
+> 🌐 Buka **[http://localhost:3000/produk/server](http://localhost:3000/produk/server)** — SSR dengan `getServerSideProps`
 
 <br/>
 </details>
