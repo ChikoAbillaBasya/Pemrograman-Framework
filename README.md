@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-8%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-9%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -40,6 +40,7 @@
 | `06` | [📁 next-routing](./Praktikum-06/next-routing/) | Firebase & Fetch API | Firebase Firestore, REST API, Fetch | ✅ |
 | `07` | [📁 next-routing](./Praktikum-07/next-routing/) | SWR Data Fetching | SWR, Firebase Firestore, Fetcher | ✅ |
 | `08` | [📁 next-routing](./Praktikum-08/next-routing/) | SSR & Skeleton UI | getServerSideProps, TypeScript Types, Skeleton | ✅ |
+| `09` | [📁 next-routing](./Praktikum-09/next-routing/) | SSG & Project Structure | getStaticProps, Project Organization, Path Aliases | ✅ |
 
 </div>
 
@@ -502,6 +503,99 @@ npm run dev
 
 > 🌐 Buka **[http://localhost:3000/produk](http://localhost:3000/produk)** — CSR dengan Skeleton UI  
 > 🌐 Buka **[http://localhost:3000/produk/server](http://localhost:3000/produk/server)** — SSR dengan `getServerSideProps`
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 09 &nbsp;—&nbsp; SSG &amp; Project Structure</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas <strong>Static Site Generation (SSG)</strong> dengan <code>getStaticProps</code>, reorganisasi struktur proyek yang lebih baik, dan penggunaan path aliases untuk absolute imports.</blockquote>
+
+**🗺️ Struktur Proyek (Diorganisir dengan Baik)**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📄 index.tsx           →  /
+ │   ├── 📂 produk
+ │   │   ├── 📄 index.tsx       →  /produk        (CSR + SWR)
+ │   │   ├── 📄 server.tsx      →  /produk/server (SSR)
+ │   │   ├── 📄 static.tsx      →  /produk/static (SSG)
+ │   │   ┙── 📄 [id].tsx        →  /produk/:id
+ │   ├── 📂 api
+ │   │   ├── 📄 hello.ts        →  /api/hello
+ │   │   └── 📄 produk.ts       →  /api/produk
+ │   ├── 📄 _app.tsx
+ │   └── 📄 _document.tsx
+ ├── 📂 components
+ │   └── 📂 layouts
+ │       ├── 📄 Appshell/         →  Layout wrapper
+ │       └── 📄 navbar/           →  Navigation component
+ ├── 📂 views
+ │   ├── 📂 auth              →  Auth view components
+ │   └── 📂 produk            →  Produk view components
+ ├── 📂 utils
+ │   ├── 📂 db
+ │   │   ├── 📄 firebase.ts
+ │   │   └── 📄 servicefirebase.ts
+ │   └── 📂 swr
+ │       └── 📄 fetcher.ts
+ ├── 📂 types
+ │   └── 📄 Product.type.ts
+ ├── 📂 styles
+ │   ├── 📄 globals.css
+ │   └── 📄 Home.module.css
+ └── tsconfig.json          →  Config dengan path aliases (@/)
+```
+
+**🔄 Perbandingan: CSR vs SSR vs SSG**
+
+| Aspek | `/produk` (CSR) | `/produk/server` (SSR) | `/produk/static` (SSG) |
+|---|---|---|---|
+| Rendering | Client-side | Server-side | Build time |
+| Data fresh | Setiap kali akses | Setiap kali akses | Sekali saat build |
+| Loading state | Skeleton UI | Tidak ada | Tidak ada |
+| SEO | Kurang | Optimal | Optimal |
+| Server cost | Rendah | Tinggi | Rendah |
+| Kecepatan | Lambat (awal) | Cepat | Tercepat |
+
+**🛠️ Fitur Utama**
+
+1. **Project Structure Organization**
+   - `types/` — TypeScript type definitions
+   - `utils/` — Helper functions & Firebase services
+   - `views/` — View components
+   - `components/` — UI components (layouts, navbar)
+
+2. **Path Aliases**
+   ```tsx
+   // Sebelum: relative paths
+   import Navbar from "../components/layouts/navbar";
+   
+   // Sesudah: absolute paths dengan @/
+   import Navbar from "@/components/layouts/navbar";
+   ```
+
+3. **AppShell Wrapper**
+   - Komponen wrapper untuk konsistensi layout
+   - Navbar & layout otomatis di semua halaman
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-09/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000/produk](http://localhost:3000/produk)** — CSR dengan SWR  
+> 🌐 Buka **[http://localhost:3000/produk/server](http://localhost:3000/produk/server)** — SSR dengan `getServerSideProps`  
+> 🌐 Buka **[http://localhost:3000/produk/static](http://localhost:3000/produk/static)** — SSG dengan `getStaticProps`
 
 <br/>
 </details>
