@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-9%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-10%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -41,6 +41,7 @@
 | `07` | [📁 next-routing](./Praktikum-07/next-routing/) | SWR Data Fetching | SWR, Firebase Firestore, Fetcher | ✅ |
 | `08` | [📁 next-routing](./Praktikum-08/next-routing/) | SSR & Skeleton UI | getServerSideProps, TypeScript Types, Skeleton | ✅ |
 | `09` | [📁 next-routing](./Praktikum-09/next-routing/) | SSG & Project Structure | getStaticProps, Project Organization, Path Aliases | ✅ |
+| `10` | [📁 next-routing](./Praktikum-10/next-routing/) | Dynamic API Route & Product Detail | Catch-all API, Detail Produk Dinamis, SSR | ✅ |
 
 </div>
 
@@ -503,6 +504,65 @@ npm run dev
 
 > 🌐 Buka **[http://localhost:3000/produk](http://localhost:3000/produk)** — CSR dengan Skeleton UI  
 > 🌐 Buka **[http://localhost:3000/produk/server](http://localhost:3000/produk/server)** — SSR dengan `getServerSideProps`
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 10 &nbsp;—&nbsp; Dynamic API Route &amp; Product Detail</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas penggunaan <strong>optional catch-all API route</strong> untuk melayani endpoint list dan detail produk dalam satu handler, serta implementasi halaman detail produk dinamis.</blockquote>
+
+**🗺️ Struktur Proyek Utama**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📂 api
+ │   │   ├── 📄 hello.ts              → /api/hello
+ │   │   └── 📄 [[...produk]].ts      → /api/produk dan /api/produk/:id
+ │   ├── 📂 produk
+ │   │   ├── 📄 index.tsx             → /produk (CSR + SWR)
+ │   │   ├── 📄 server.tsx            → /produk/server (SSR)
+ │   │   ├── 📄 static.tsx            → /produk/static
+ │   │   └── 📄 [produk].tsx          → /produk/:produk (detail dinamis)
+ │   ├── 📄 404.tsx
+ │   ├── 📄 _app.tsx
+ │   └── 📄 _document.tsx
+ ├── 📂 views
+ │   ├── 📂 produk                    → Komponen list produk
+ │   └── 📄 DetailProduct.tsx         → Komponen detail produk
+ ├── 📂 utils
+ │   ├── 📂 db
+ │   │   ├── 📄 firebase.ts
+ │   │   └── 📄 servicefirebase.ts    → retrieveProducts & retrieveDataByID
+ │   └── 📂 swr
+ │       └── 📄 fetcher.ts
+ └── 📂 types
+     └── 📄 Product.type.ts
+```
+
+**🔄 Alur Endpoint API `[[...produk]].ts`**
+
+| Request | Hasil |
+|---|---|
+| `GET /api/produk` | Mengembalikan semua data produk |
+| `GET /api/produk/{id}` | Mengembalikan satu produk berdasarkan ID |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-10/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000/produk](http://localhost:3000/produk)** untuk list produk.  
+> 🌐 Klik salah satu item produk untuk menuju halaman detail dinamis `/produk/:id`.
 
 <br/>
 </details>
