@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-10%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-11%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -42,6 +42,7 @@
 | `08` | [📁 next-routing](./Praktikum-08/next-routing/) | SSR & Skeleton UI | getServerSideProps, TypeScript Types, Skeleton | ✅ |
 | `09` | [📁 next-routing](./Praktikum-09/next-routing/) | SSG & Project Structure | getStaticProps, Project Organization, Path Aliases | ✅ |
 | `10` | [📁 next-routing](./Praktikum-10/next-routing/) | Dynamic API Route & Product Detail | Catch-all API, Detail Produk Dinamis, SSR | ✅ |
+| `11` | [📁 next-routing](./Praktikum-11/next-routing/) | ISR & Revalidation | getStaticProps, Revalidate API, On-demand Revalidation | ✅ |
 
 </div>
 
@@ -563,6 +564,81 @@ npm run dev
 
 > 🌐 Buka **[http://localhost:3000/produk](http://localhost:3000/produk)** untuk list produk.  
 > 🌐 Klik salah satu item produk untuk menuju halaman detail dinamis `/produk/:id`.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 11 &nbsp;—&nbsp; ISR &amp; Revalidation</b>
+</summary>
+<br/>
+<blockquote>Proyek yang membahas <strong>Incremental Static Regeneration (ISR)</strong> melalui <code>revalidate</code> di <code>getStaticProps</code> dan <strong>on-demand revalidation</strong> melalui API route khusus.</blockquote>
+
+**🗺️ Struktur Halaman**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📂 api
+ │   │   ├── 📄 hello.ts              → /api/hello
+ │   │   ├── 📄 [[...produk]].ts      → /api/produk dan /api/produk/:id
+ │   │   └── 📄 revalidate.ts         → /api/revalidate (on-demand revalidation)
+ │   ├── 📂 produk
+ │   │   ├── 📄 index.tsx             → /produk (CSR + SWR)
+ │   │   ├── 📄 server.tsx            → /produk/server (SSR)
+ │   │   ├── 📄 static.tsx            → /produk/static (ISR)
+ │   │   └── 📄 [produk].tsx          → /produk/:produk (detail dinamis + ISR)
+ │   ├── 📄 404.tsx
+ │   ├── 📄 _app.tsx
+ │   └── 📄 _document.tsx
+ ├── 📂 views
+ │   ├── 📂 DetailProduct             → Komponen detail produk
+ │   └── 📂 produk                    → Komponen list produk
+ ├── 📂 utils
+ │   ├── 📂 db
+ │   │   ├── 📄 firebase.ts
+ │   │   └── 📄 servicefirebase.ts    → retrieveProducts & retrieveDataByID
+ │   └── 📂 swr
+ │       └── 📄 fetcher.ts
+ └── 📂 types
+     └── 📄 Product.type.ts
+```
+
+**🔄 Alur Revalidation**
+
+| Fitur | Keterangan |
+|---|---|
+| `getStaticProps` | Mengambil data saat build dan dapat di-refresh secara berkala |
+| `revalidate: 10` | Halaman static diperbarui setiap 10 detik |
+| `/api/revalidate?data=produk&token=...` | Endpoint untuk memicu revalidation manual |
+| `res.revalidate("/produk/static")` | Melakukan rebuild halaman static secara on-demand |
+
+**⚙️ Konfigurasi Environment**
+
+Buat file `.env.local` di root proyek:
+```env
+REVALIDATE_TOKEN=...
+FIREBASE_API_KEY=...
+FIREBASE_AUTH_DOMAIN=...
+FIREBASE_PROJECT_ID=...
+FIREBASE_STORAGE_BUCKET=...
+FIREBASE_MESSAGING_SENDER_ID=...
+FIREBASE_APP_ID=...
+```
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-11/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Buka **[http://localhost:3000/produk/static](http://localhost:3000/produk/static)** untuk halaman ISR.  
+> 🔁 Coba endpoint revalidation: `/api/revalidate?data=produk&token=REVALIDATE_TOKEN`
 
 <br/>
 </details>
