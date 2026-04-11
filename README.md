@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-11%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-12%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -43,6 +43,7 @@
 | `09` | [📁 next-routing](./Praktikum-09/next-routing/) | SSG & Project Structure | getStaticProps, Project Organization, Path Aliases | ✅ |
 | `10` | [📁 next-routing](./Praktikum-10/next-routing/) | Dynamic API Route & Product Detail | Catch-all API, Detail Produk Dinamis, SSR | ✅ |
 | `11` | [📁 next-routing](./Praktikum-11/next-routing/) | ISR & Revalidation | getStaticProps, Revalidate API, On-demand Revalidation | ✅ |
+| `12` | [📁 next-routing](./Praktikum-12/next-routing/) | Middleware & Route Protection | Next.js Middleware, Matcher, Redirect Auth | ✅ |
 
 </div>
 
@@ -738,7 +739,55 @@ npm run dev
 
 ---
 
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 12 &nbsp;—&nbsp; Middleware &amp; Route Protection</b>
+</summary>
 <br/>
+<blockquote>Proyek yang membahas <strong>Next.js Middleware</strong> untuk proteksi route dengan redirect ke halaman login ketika user belum terautentikasi.</blockquote>
+
+**🗺️ Struktur Halaman Utama**
+
+```
+📂 next-routing/src
+ ├── 📄 middleware.ts          → Proteksi route dengan redirect
+ ├── 📂 pages
+ │   ├── 📂 auth
+ │   │   ├── 📄 login.tsx      → /auth/login
+ │   │   └── 📄 register.tsx   → /auth/register
+ │   ├── 📂 produk
+ │   │   ├── 📄 index.tsx      → /produk (route terlindungi)
+ │   │   ├── 📄 static.tsx     → /produk/static (ISR)
+ │   │   ├── 📄 server.tsx     → /produk/server (SSR)
+ │   │   └── 📄 [produk].tsx   → /produk/:produk
+ │   ├── 📂 api
+ │   │   ├── 📄 [[...produk]].ts
+ │   │   └── 📄 revalidate.ts
+ │   └── ...
+ └── 📂 utils / views / types
+```
+
+**🔐 Alur Middleware**
+
+| Bagian | Keterangan |
+|---|---|
+| `middleware.ts` | Menjalankan pengecekan auth sebelum request masuk ke halaman |
+| `isLogin = false` | Simulasi kondisi user belum login |
+| `NextResponse.redirect(...)` | Redirect ke `/auth/login` jika belum login |
+| `matcher: ["/produk", "/about"]` | Middleware hanya aktif pada route tertentu |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-12/next-routing
+npm install
+npm run dev
+```
+
+> 🌐 Akses **[http://localhost:3000/produk](http://localhost:3000/produk)** atau **[http://localhost:3000/about](http://localhost:3000/about)** untuk melihat redirect middleware ke login.
+
+<br/>
+</details>
 
 ---
 
