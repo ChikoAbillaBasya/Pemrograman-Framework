@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-12%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-13%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -44,6 +44,7 @@
 | `10` | [📁 next-routing](./Praktikum-10/next-routing/) | Dynamic API Route & Product Detail | Catch-all API, Detail Produk Dinamis, SSR | ✅ |
 | `11` | [📁 next-routing](./Praktikum-11/next-routing/) | ISR & Revalidation | getStaticProps, Revalidate API, On-demand Revalidation | ✅ |
 | `12` | [📁 next-routing](./Praktikum-12/next-routing/) | Middleware & Route Protection | Next.js Middleware, Matcher, Redirect Auth | ✅ |
+| `13` | [📁 next-routing](./Praktikum-13/next-routing/) | NextAuth Integration | NextAuth.js, JWT Token, withAuth Middleware | ✅ |
 
 </div>
 
@@ -785,6 +786,62 @@ npm run dev
 ```
 
 > 🌐 Akses **[http://localhost:3000/produk](http://localhost:3000/produk)** atau **[http://localhost:3000/about](http://localhost:3000/about)** untuk melihat redirect middleware ke login.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 13 &nbsp;—&nbsp; NextAuth Integration</b>
+</summary>
+<br/>
+<blockquote>Proyek yang mengintegrasikan <strong>NextAuth.js</strong> untuk sistem autentikasi yang lebih robust. Menggunakan JWT token verification melalui middleware HOF dan <code>getToken</code> dari nextAuth.</blockquote>
+
+**🗺️ Struktur Aplikasi**
+
+```
+📂 next-routing/src
+ ├── 📄 middleware.ts          → Middleware utama dengan matcher
+ ├── 📂 middleware
+ │   └── 📄 withAuth.ts        → Middleware HOF dengan JWT verification
+ ├── 📂 pages
+ │   ├── 📂 auth
+ │   │   ├── 📄 login.tsx      → /auth/login
+ │   │   └── 📄 register.tsx   → /auth/register
+ │   ├── 📂 produk
+ │   │   ├── 📄 index.tsx      → /produk (route terlindungi)
+ │   │   ├── 📄 static.tsx     → /produk/static (ISR)
+ │   │   ├── 📄 server.tsx     → /produk/server (SSR)
+ │   │   └── 📄 [produk].tsx   → /produk/:produk
+ │   ├── 📂 profile
+ │   ├── 📂 api
+ │   │   ├── 📄 [[...produk]].ts
+ │   │   └── 📄 revalidate.ts
+ │   └── ...
+ └── 📂 utils / views / types / components
+```
+
+**🔐 NextAuth Architecture**
+
+| Komponen | Fungsi |
+|---|---|
+| `withAuth(middleware, requireAuth)` | Higher-Order Function untuk wrap middleware dengan JWT verification |
+| `getToken()` | Mengambil JWT token dari request (via NextAuth.js) |
+| `NEXTAUTH_SECRET` | Environment variable untuk JWT signing |
+| `requireAuth: string[]` | Array berisi pathname yang memerlukan autentikasi |
+| `NextResponse.redirect(loginUrl)` | Redirect ke login jika token tidak valid/tidak ada |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-13/next-routing
+npm install
+npm run dev
+```
+
+> 🔑 Pastikan `NEXTAUTH_SECRET` dikonfigurasi di `.env.local` untuk JWT verification berfungsi dengan baik.
 
 <br/>
 </details>
