@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-14%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-15%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -46,6 +46,7 @@
 | `12` | [📁 next-routing](./Praktikum-12/next-routing/) | Middleware & Route Protection | Next.js Middleware, Matcher, Redirect Auth | ✅ |
 | `13` | [📁 next-routing](./Praktikum-13/next-routing/) | NextAuth Integration | NextAuth.js, JWT Token, withAuth Middleware | ✅ |
 | `14` | [📁 next-routing](./Praktikum-14/next-routing/) | Auth Registration & Password Hashing | API Register, Firebase Users, bcrypt Hashing | ✅ |
+| `15` | [📁 next-routing](./Praktikum-15/next-routing/) | Role-Based Access Control (RBAC) | NextAuth JWT Role, Admin Guard, Protected Routes | ✅ |
 
 </div>
 
@@ -896,6 +897,57 @@ npm run dev
 ```
 
 > 🔑 Konfigurasi `.env.local` untuk `NEXTAUTH_SECRET` dan kredensial Firebase sebelum menjalankan project.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 15 &nbsp;—&nbsp; Role-Based Access Control (RBAC)</b>
+</summary>
+<br/>
+<blockquote>Proyek yang menambahkan <strong>otorisasi berbasis role</strong> pada autentikasi NextAuth. User dibedakan berdasarkan role (mis. admin/user), dan route tertentu dibatasi menggunakan middleware guard.</blockquote>
+
+**🗺️ Struktur Aplikasi**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📂 admin
+ │   │   └── 📄 index.tsx              → /admin (khusus admin)
+ │   ├── 📂 auth
+ │   │   └── 📄 login.tsx              → /auth/login
+ │   └── 📂 api
+ │       └── 📂 auth
+ │           └── 📄 [...nextauth].ts   → Login credentials + inject role ke JWT/session
+ ├── 📂 middleware
+ │   └── 📄 withAuth.ts                → Guard auth + guard role admin
+ ├── 📄 middleware.ts                  → Daftar matcher route yang diproteksi
+ └── 📂 utils/db
+     └── 📄 servicefirebase.ts         → Ambil user by email + validasi password hash
+```
+
+**🛡️ Alur Otorisasi Role**
+
+| Komponen | Fungsi |
+|---|---|
+| `signIn(email)` | Mengambil data user dari Firestore termasuk `role` |
+| `bcrypt.compare(...)` | Validasi password plaintext terhadap hash di database |
+| `jwt` callback | Menyimpan `email`, `fullname`, dan `role` ke token |
+| `session` callback | Menurunkan data role ke session client |
+| `withAuth.ts` | Redirect ke login jika belum auth, dan blok akses `/admin` bila role bukan admin |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-15/next-routing
+npm install
+npm run dev
+```
+
+> 🔑 Pastikan data user di Firestore memiliki field `role` agar pembatasan akses admin berjalan sesuai aturan.
 
 <br/>
 </details>
