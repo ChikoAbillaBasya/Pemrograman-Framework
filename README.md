@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-13%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-14%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -45,6 +45,7 @@
 | `11` | [📁 next-routing](./Praktikum-11/next-routing/) | ISR & Revalidation | getStaticProps, Revalidate API, On-demand Revalidation | ✅ |
 | `12` | [📁 next-routing](./Praktikum-12/next-routing/) | Middleware & Route Protection | Next.js Middleware, Matcher, Redirect Auth | ✅ |
 | `13` | [📁 next-routing](./Praktikum-13/next-routing/) | NextAuth Integration | NextAuth.js, JWT Token, withAuth Middleware | ✅ |
+| `14` | [📁 next-routing](./Praktikum-14/next-routing/) | Auth Registration & Password Hashing | API Register, Firebase Users, bcrypt Hashing | ✅ |
 
 </div>
 
@@ -848,6 +849,59 @@ npm run dev
 
 ---
 
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 14 &nbsp;—&nbsp; Auth Registration &amp; Password Hashing</b>
+</summary>
+<br/>
+<blockquote>Proyek yang menambahkan alur registrasi user menggunakan API route, penyimpanan data user ke Firebase Firestore, serta pengamanan password dengan <strong>bcrypt hashing</strong>.</blockquote>
+
+**🗺️ Struktur Aplikasi**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📂 auth
+ │   │   ├── 📄 login.tsx            → /auth/login
+ │   │   └── 📄 register.tsx         → /auth/register
+ │   └── 📂 api
+ │       ├── 📄 register.ts          → Endpoint registrasi user
+ │       └── 📂 auth
+ │           └── 📄 [...nextauth].ts → Konfigurasi NextAuth credentials
+ ├── 📂 utils
+ │   └── 📂 db
+ │       ├── 📄 firebase.ts          → Inisialisasi Firebase app
+ │       └── 📄 servicefirebase.ts   → Query user + bcrypt hash + addDoc
+ ├── 📂 middleware
+ │   └── 📄 withAuth.ts              → Validasi token JWT untuk route terlindungi
+ └── 📄 middleware.ts                → Matcher route proteksi
+```
+
+**🔐 Alur Registrasi & Keamanan Password**
+
+| Komponen | Fungsi |
+|---|---|
+| `pages/api/register.ts` | Validasi input email/password dan memanggil proses `signUp` |
+| `signUp()` | Cek email duplikat di koleksi `users` sebelum menyimpan data |
+| `bcrypt.hash(password, 10)` | Mengubah password plaintext menjadi hash sebelum disimpan |
+| `addDoc(collection(db, "users"), userData)` | Menyimpan user baru ke Firestore |
+| `pages/api/auth/[...nextauth].ts` | Menyediakan auth flow berbasis credentials dengan session JWT |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-14/next-routing
+npm install
+npm run dev
+```
+
+> 🔑 Konfigurasi `.env.local` untuk `NEXTAUTH_SECRET` dan kredensial Firebase sebelum menjalankan project.
+
+<br/>
+</details>
+
+---
+
 ## 🛠️ Tech Stack
 
 <div align="center">
@@ -862,6 +916,8 @@ npm run dev
 | 🟣 | [Sass](https://sass-lang.com/) | `1` | CSS Preprocessor |
 | 🧡 | [Firebase](https://firebase.google.com/) | `12` | Backend-as-a-Service (Firestore) |
 | ⚪ | [SWR](https://swr.vercel.app/) | `2` | Data Fetching & Caching Hook |
+| 🟢 | [NextAuth.js](https://next-auth.js.org/) | `4` | Authentication, JWT Session, Credentials Provider |
+| 🟤 | [bcrypt](https://www.npmjs.com/package/bcrypt) | `6` | Password Hashing untuk keamanan data user |
 
 </div>
 
