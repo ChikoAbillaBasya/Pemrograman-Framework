@@ -1,0 +1,47 @@
+.main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.main h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.card h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.logoutBtn {
+    display: block;
+    margin-top: 32px;
+    padding: 10px 24px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.logoutBtn:hover {
+    background-color: #c0392b;
+}
