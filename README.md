@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-15%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-16%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -47,6 +47,7 @@
 | `13` | [📁 next-routing](./Praktikum-13/next-routing/) | NextAuth Integration | NextAuth.js, JWT Token, withAuth Middleware | ✅ |
 | `14` | [📁 next-routing](./Praktikum-14/next-routing/) | Auth Registration & Password Hashing | API Register, Firebase Users, bcrypt Hashing | ✅ |
 | `15` | [📁 next-routing](./Praktikum-15/next-routing/) | Role-Based Access Control (RBAC) | NextAuth JWT Role, Admin Guard, Protected Routes | ✅ |
+| `16` | [📁 next-routing](./Praktikum-16/next-routing/) | OAuth Login & Multi-Role Protection | Google/GitHub OAuth, JWT Role Mapping, Client + Middleware Guard | ✅ |
 
 </div>
 
@@ -948,6 +949,59 @@ npm run dev
 ```
 
 > 🔑 Pastikan data user di Firestore memiliki field `role` agar pembatasan akses admin berjalan sesuai aturan.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 16 &nbsp;—&nbsp; OAuth Login &amp; Multi-Role Protection</b>
+</summary>
+<br/>
+<blockquote>Proyek yang memperluas autentikasi NextAuth dengan <strong>OAuth Provider</strong> (Google dan GitHub), sinkronisasi user OAuth ke Firestore, serta proteksi halaman berdasarkan role lewat middleware server dan guard di sisi client.</blockquote>
+
+**🗺️ Struktur Aplikasi**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📂 auth
+ │   │   └── 📄 login.tsx               → /auth/login
+ │   ├── 📂 admin
+ │   │   └── 📄 index.tsx               → /admin (khusus admin)
+ │   ├── 📂 editor
+ │   │   └── 📄 index.tsx               → /editor (editor/admin)
+ │   └── 📂 api/auth
+ │       └── 📄 [...nextauth].ts        → Credentials + Google + GitHub provider
+ ├── 📂 middleware
+ │   └── 📄 withAuth.ts                 → Redirect login + cek role untuk route sensitif
+ ├── 📄 middleware.ts                   → Matcher route: /produk, /profile, /admin, /editor, /about
+ └── 📂 utils
+     ├── 📄 withAuth.ts                 → HOC guard role di client-side page
+     └── 📂 db/servicefirebase.ts       → signIn, signUp, signInWithOAuth
+```
+
+**🔐 Alur OAuth & Otorisasi**
+
+| Komponen | Fungsi |
+|---|---|
+| `GoogleProvider` & `GitHubProvider` | Login menggunakan akun Google/GitHub |
+| `signInWithOAuth()` | Cek user OAuth di Firestore, update data jika ada, atau buat user baru |
+| `jwt` callback | Menyimpan informasi user (`email`, `fullname`, `role`, `type`, `image`) ke token |
+| `session` callback | Menyediakan data role/user ke sisi client melalui session |
+| `middleware/withAuth.ts` + `utils/withAuth.ts` | Kombinasi guard server-side dan client-side untuk pembatasan akses berbasis role |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-16/next-routing
+npm install
+npm run dev
+```
+
+> 🔑 Pastikan `.env.local` memuat `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, dan `GITHUB_CLIENT_SECRET`.
 
 <br/>
 </details>
