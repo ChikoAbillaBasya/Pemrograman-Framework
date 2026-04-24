@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Navbar Component renders navbar component correctly 1`] = `
+<div>
+  <div
+    class="navbar"
+  >
+    <div
+      class="navbar__brand"
+      id="title"
+    />
+    <div
+      class="navbar__right"
+    >
+      <div
+        class="navbar__user"
+      >
+        Welcome, 
+        John Doe
+      </div>
+      <img
+        alt="John Doe"
+        class="navbar__user_image"
+        height="50"
+        referrerpolicy="no-referrer"
+        src="https://example.com/avatar.jpg"
+        width="50"
+      />
+      <button
+        class="navbar__button navbar__button--danger"
+      >
+        Sign Out
+      </button>
+    </div>
+  </div>
+</div>
+`;
