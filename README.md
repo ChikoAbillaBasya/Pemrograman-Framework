@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-17%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-18%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -49,6 +49,7 @@
 | `15` | [📁 next-routing](./Praktikum-15/next-routing/) | Role-Based Access Control (RBAC) | NextAuth JWT Role, Admin Guard, Protected Routes | ✅ |
 | `16` | [📁 next-routing](./Praktikum-16/next-routing/) | OAuth Login & Multi-Role Protection | Google/GitHub OAuth, JWT Role Mapping, Client + Middleware Guard | ✅ |
 | `17` | [📁 next-routing](./Praktikum-17/next-routing/) | AppShell Layout & Analytics Integration | Global Layout, Session Navbar, Next Script, Next Font | ✅ |
+| `18` | [📁 next-routing](./Praktikum-18/next-routing/) | Testing & Coverage dengan Jest | Unit Test Komponen, Snapshot Testing, Coverage Report | ✅ |
 
 </div>
 
@@ -1065,6 +1066,57 @@ npm run dev
 
 ---
 
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 18 &nbsp;—&nbsp; Testing &amp; Coverage dengan Jest</b>
+</summary>
+<br/>
+<blockquote>Proyek yang menambahkan <strong>automated testing</strong> pada aplikasi Next.js menggunakan Jest dan React Testing Library, termasuk pengukuran code coverage untuk komponen halaman, utilitas, dan mock router.</blockquote>
+
+**🗺️ Struktur Testing**
+
+```
+📂 next-routing
+ ├── 📄 jest.config.mjs                    → Konfigurasi Jest + coverage rules
+ ├── 📄 jest.setup.js                      → Setup matcher testing-library
+ ├── 📂 coverage/                          → Output laporan coverage (HTML + lcov)
+ └── 📂 src/_test_
+     ├── 📂 component/pages                → Test halaman (about, product, admin, editor, dll)
+     ├── 📂 utils                          → Test utilitas (fetcher, firebase)
+     └── 📂 mocks                          → Mock router untuk skenario routing
+```
+
+**🧪 Konsep Pengujian yang Dipraktikkan**
+
+| Komponen | Fungsi |
+|---|---|
+| `jest.config.mjs` | Menetapkan environment `jsdom`, alias module, dan aturan `collectCoverageFrom` |
+| `@testing-library/react` | Render komponen lalu verifikasi elemen UI dari sudut pandang user |
+| `Snapshot testing` | Menjaga konsistensi output komponen pada test tertentu |
+| `Mock Next.js modules` | Mock `next/script`, router, dan provider agar test tetap terisolasi |
+| `coverage report` | Mengukur area kode yang sudah diuji melalui output `coverage/lcov-report/index.html` |
+
+**▶️ Menjalankan Proyek & Testing**
+
+```bash
+cd Praktikum-18/next-routing
+npm install
+npm run dev
+
+# Jalankan seluruh test
+npm run test
+
+# Jalankan test + coverage
+npm run test:coverage
+```
+
+> 📊 Buka laporan coverage di `coverage/lcov-report/index.html` untuk melihat persentase pengujian per file.
+
+<br/>
+</details>
+
+---
+
 ## 🛠️ Tech Stack
 
 <div align="center">
@@ -1081,6 +1133,8 @@ npm run dev
 | ⚪ | [SWR](https://swr.vercel.app/) | `2` | Data Fetching & Caching Hook |
 | 🟢 | [NextAuth.js](https://next-auth.js.org/) | `4` | Authentication, JWT Session, Credentials Provider |
 | 🟤 | [bcrypt](https://www.npmjs.com/package/bcrypt) | `6` | Password Hashing untuk keamanan data user |
+| 🧰 | [Jest](https://jestjs.io/) | `30` | Unit Testing Framework untuk JavaScript/TypeScript |
+| 🧪 | [Testing Library](https://testing-library.com/docs/react-testing-library/intro/) | `16` | Pengujian komponen React berbasis perilaku pengguna |
 
 </div>
 
