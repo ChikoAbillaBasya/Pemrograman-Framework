@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-16%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-17%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -48,6 +48,7 @@
 | `14` | [📁 next-routing](./Praktikum-14/next-routing/) | Auth Registration & Password Hashing | API Register, Firebase Users, bcrypt Hashing | ✅ |
 | `15` | [📁 next-routing](./Praktikum-15/next-routing/) | Role-Based Access Control (RBAC) | NextAuth JWT Role, Admin Guard, Protected Routes | ✅ |
 | `16` | [📁 next-routing](./Praktikum-16/next-routing/) | OAuth Login & Multi-Role Protection | Google/GitHub OAuth, JWT Role Mapping, Client + Middleware Guard | ✅ |
+| `17` | [📁 next-routing](./Praktikum-17/next-routing/) | AppShell Layout & Analytics Integration | Global Layout, Session Navbar, Next Script, Next Font | ✅ |
 
 </div>
 
@@ -1002,6 +1003,62 @@ npm run dev
 ```
 
 > 🔑 Pastikan `.env.local` memuat `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, dan `GITHUB_CLIENT_SECRET`.
+
+<br/>
+</details>
+
+---
+
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 17 &nbsp;—&nbsp; AppShell Layout &amp; Analytics Integration</b>
+</summary>
+<br/>
+<blockquote>Proyek yang memfokuskan pada <strong>arsitektur layout global</strong> menggunakan AppShell, integrasi script pihak ketiga (Google Analytics) lewat <code>next/script</code>, serta navbar dinamis berbasis status session NextAuth.</blockquote>
+
+**🗺️ Struktur Aplikasi**
+
+```
+📂 next-routing/src
+ ├── 📂 pages
+ │   ├── 📄 _app.tsx                      → Root app: SessionProvider + AppShell + Script GA
+ │   ├── 📂 auth
+ │   │   ├── 📄 login.tsx                 → /auth/login
+ │   │   └── 📄 register.tsx              → /auth/register
+ │   ├── 📂 api/auth
+ │   │   └── 📄 [...nextauth].ts          → Credentials + OAuth provider
+ │   ├── 📂 admin
+ │   │   └── 📄 index.tsx
+ │   └── 📂 editor
+ │       └── 📄 index.tsx
+ ├── 📂 components/layouts
+ │   ├── 📂 Appshell/index.tsx            → Wrapper layout + hide/show navbar per route
+ │   └── 📂 navbar/index.tsx              → UI navbar + state login/signout + avatar
+ ├── 📂 middleware
+ │   └── 📄 withAuth.ts                   → Proteksi route berbasis auth/role
+ └── 📂 utils
+     └── 📄 withAuth.ts                   → Higher-order guard di sisi client
+```
+
+**🧩 Konsep Utama Praktikum**
+
+| Komponen | Fungsi |
+|---|---|
+| `_app.tsx` | Menyatukan provider global (`SessionProvider`) dan layout (`AppShell`) |
+| `next/script` | Inject script Google Analytics dengan strategi `afterInteractive` |
+| `next/font/google` | Menerapkan font Roboto secara optimal tanpa import manual CSS font |
+| `Appshell` | Menentukan route yang tidak menampilkan navbar (login/register/404) |
+| `Navbar` | Menampilkan aksi berbeda berdasarkan session: sign-in untuk guest, profil + sign-out untuk user login |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-17/next-routing
+npm install
+npm run dev
+```
+
+> 🔑 Siapkan variabel auth/OAuth di `.env.local` dan sesuaikan `G-XXXXXXXXXX` di script analytics dengan Measurement ID milikmu.
 
 <br/>
 </details>
