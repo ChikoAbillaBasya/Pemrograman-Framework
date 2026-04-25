@@ -17,7 +17,7 @@
 <br/>
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/username/repo?style=flat-square&color=302b63&label=Repo%20Size)
-![Praktikum](https://img.shields.io/badge/Praktikum-18%20Selesai-brightgreen?style=flat-square)
+![Praktikum](https://img.shields.io/badge/Praktikum-19%20Selesai-brightgreen?style=flat-square)
 ![Framework](https://img.shields.io/badge/Framework-Next.js-black?style=flat-square&logo=next.js)
 
 </div>
@@ -50,6 +50,7 @@
 | `16` | [📁 next-routing](./Praktikum-16/next-routing/) | OAuth Login & Multi-Role Protection | Google/GitHub OAuth, JWT Role Mapping, Client + Middleware Guard | ✅ |
 | `17` | [📁 next-routing](./Praktikum-17/next-routing/) | AppShell Layout & Analytics Integration | Global Layout, Session Navbar, Next Script, Next Font | ✅ |
 | `18` | [📁 next-routing](./Praktikum-18/next-routing/) | Testing & Coverage dengan Jest | Unit Test Komponen, Snapshot Testing, Coverage Report | ✅ |
+| `19` | [📁 next-routing](./Praktikum-19/next-routing/) | Deploy-Safe Rendering Strategy | Migrasi SSG ke Runtime Fetch, SSR Produk, Env-based API URL | ✅ |
 
 </div>
 
@@ -1117,6 +1118,55 @@ npm run test:coverage
 
 ---
 
+<details>
+<summary>
+  <b>&nbsp;📦 Praktikum 19 &nbsp;—&nbsp; Deploy-Safe Rendering Strategy</b>
+</summary>
+<br/>
+<blockquote>Proyek yang berfokus pada stabilitas saat deployment dengan memindahkan sebagian alur dari <strong>SSG</strong> ke rendering runtime (CSR/SSR), serta standardisasi endpoint API menggunakan environment variable.</blockquote>
+
+**🗺️ Struktur Utama yang Diubah**
+
+```
+📂 next-routing/src/pages/produk
+ ├── 📄 [produk].tsx         → Detail produk via runtime fetch (SWR)
+ ├── 📄 server.tsx           → Daftar produk via SSR (`getServerSideProps`)
+ └── 📄 index.tsx            → Halaman produk utama
+
+📂 next-routing
+ ├── 📄 .env.local           → Menyimpan `NEXT_PUBLIC_API_URL`
+ └── 📂 coverage/lcov-report → Laporan pengujian yang tetap tersedia
+```
+
+**⚙️ Strategi Rendering untuk Deploy**
+
+| Komponen | Fungsi |
+|---|---|
+| `pages/produk/[produk].tsx` | Menggunakan `useRouter` + `useSWR` untuk fetch detail produk saat runtime |
+| Blok `getStaticPaths/getStaticProps` | Dinonaktifkan agar tidak bergantung pada build-time path generation |
+| `pages/produk/server.tsx` | Mengambil data produk di sisi server dengan `getServerSideProps` |
+| `NEXT_PUBLIC_API_URL` | Menjadikan endpoint API fleksibel lintas environment (local/deploy) |
+| Coverage report | Tetap digunakan untuk validasi kualitas setelah perubahan strategi render |
+
+**▶️ Menjalankan Proyek**
+
+```bash
+cd Praktikum-19/next-routing
+npm install
+npm run dev
+
+# Jalankan pengujian
+npm run test
+npm run test:coverage
+```
+
+> 🔑 Pastikan `NEXT_PUBLIC_API_URL` diset sesuai environment target agar request data produk tetap valid setelah deploy.
+
+<br/>
+</details>
+
+---
+
 ## 🛠️ Tech Stack
 
 <div align="center">
@@ -1189,5 +1239,6 @@ Pastikan sudah terinstall sebelum menjalankan proyek:
 *📝 Dibuat untuk keperluan akademik — Mata Kuliah Pemrograman Berbasis Framework*
 
 </div>
-#   F o r c e   r e d e p l o y  
+#   F o r c e   r e d e p l o y 
+ 
  
