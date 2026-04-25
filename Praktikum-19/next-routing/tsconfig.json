@@ -25,5 +25,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
 , "src/pages/shop/[[...slug]].js"  ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "_test_", "src/_test_", "coverage"]
 }
