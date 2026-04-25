@@ -1189,3 +1189,5 @@ Pastikan sudah terinstall sebelum menjalankan proyek:
 *📝 Dibuat untuk keperluan akademik — Mata Kuliah Pemrograman Berbasis Framework*
 
 </div>
+#   F o r c e   r e d e p l o y  
+ 
