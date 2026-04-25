@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd Praktikum-19/next-routing && npm run build",
+  "outputDirectory": "Praktikum-19/next-routing/.next",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@next_public_api_url"
+  }
+}
